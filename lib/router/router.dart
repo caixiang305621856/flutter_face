@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter_face/model/user.dart';
 import 'package:flutter_face/ui/pages/clazz/selectclazz_page.dart';
 import 'package:flutter_face/ui/pages/home_page.dart';
 import 'package:flutter_face/ui/pages/login/login_page.dart';
 
 class OPRouter {
-  static final String initialRoute = OPLoginPage.routerName;
+
+  static GlobalKey<NavigatorState> navigatorKey=GlobalKey();
+
+  static final String initialRoute = UserHandler.isLogin()?OPHomePage.routerName:OPLoginPage.routerName;
 
   static final Map<String, WidgetBuilder> routes = {
     OPHomePage.routerName : (ctx) => OPHomePage(),
@@ -34,3 +39,4 @@ class OPRouter {
     return null;
   };
 }
+

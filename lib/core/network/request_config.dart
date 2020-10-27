@@ -1,7 +1,8 @@
 import 'package:flutter_face/common/global.dart';
+import 'package:flutter_face/model/user.dart';
 
 class HttpConfig {
-  // https://httpbin.org
+  /// https://httpbin.org
   static const String baseUrl = "https://pre-api.shixunbao.cn";
   static const int sendTimeout = 10000;
   static const int connectTimeout = 30000;
@@ -15,12 +16,11 @@ class HttpConfig {
     "versioncode": Global.versioncode
   };
 
-  //设置uid token clazzId
-  // static Map<String, String> setParamsFormDB(){
-  //   Map<String, String> params = {};
-  //   params["uid"] = CXUtil.getString("uid") ?? "";
-  //   params["clazzId"] = CXUtil.getString("clazzId") ?? "";
-  //   params["token"] = CXUtil.getString("token") ?? "";
-  //   return params;
-  // }
+  static Map<String, String> setParamsFormDB(){
+    OPUser user = UserHandler.getDBUser();
+    if (user != null){
+     return user.toJson();
+    }
+    return null;
+  }
 }

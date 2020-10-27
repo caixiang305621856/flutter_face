@@ -1,10 +1,10 @@
-import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_face/core/network/token_request.dart';
 import 'package:flutter_face/core/utils/log.dart';
 import 'package:flutter_face/model/login_user.dart';
 import 'package:flutter_face/model/user.dart';
+import 'package:flutter_face/router/router.dart';
 import 'package:flutter_face/ui/pages/home_page.dart';
 
 class OPSelectClazzPage extends StatelessWidget {
@@ -57,14 +57,14 @@ class OPClazzItem extends StatelessWidget {
               ///选中班级
               OPToken.getToken(_clazzs.uid).then((value){
                 Dlog.showLog("uid:${_clazzs.uid} \n clazzId:${_clazzs.identification} \n token:$value",prefix: "选班获取token成功");
-                user = SpUtil.getObj("user_db",(v)=> Dlog.showLog(v));
+                user = UserHandler.getDBUser();
                 if(user == null){
                   user = OPUser(value, _clazzs.uid, _clazzs.identification.toString());
                 } else{
                   user.token = value;
                 }
-                SpUtil.putObject("user_db", user);
-                Navigator.of(context).pushReplacementNamed(OPHomePage.routerName);
+                UserHandler.saveDBUser(user);
+                OPRouter.navigatorKey.currentState.pushReplacementNamed(OPHomePage.routerName);
               }).whenComplete((){
                 Dlog.showLog("选班完成、隐藏菊花");
               });

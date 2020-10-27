@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
-import 'dart:convert';
+
+import 'package:flutter_face/model/user.dart';
+import 'package:flutter_face/core/utils/log.dart';
 
 import 'request_config.dart';
-import 'package:flutter_face/core/utils/log.dart';
 
 class HttpRequest {
   static final BaseOptions baseOptions = BaseOptions(
@@ -38,6 +39,8 @@ class HttpRequest {
             }
             if(responseData["status"] == 700){
               //跳登录页
+              UserHandler.getDBUser().token = "";
+              UserHandler.removeDBUser();
             }
           }
         } catch(e){
@@ -56,10 +59,12 @@ class HttpRequest {
     }
 
     dio.interceptors.addAll(inters);
-
     try {
       ///追加请求体
-      // params.addAll(HttpConfig.setParamsFormDB());
+      var requestParam = HttpConfig.setParamsFormDB();
+      if (requestParam != null){
+        params.addAll(requestParam);
+      }
       Response response =
           await dio.request(url, queryParameters: params, options: options);
       return response.data;

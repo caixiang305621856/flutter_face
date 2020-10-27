@@ -1,8 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_face/ui/utils/loading.dart';
+
 import 'package:flutter_face/core/utils/extension/int_extension.dart';
 import 'package:flutter_face/core/network/login_request.dart';
 import 'package:flutter_face/model/login_user.dart';
+import 'package:flutter_face/router/router.dart';
 import 'package:flutter_face/ui/pages/clazz/selectclazz_page.dart';
+import 'package:flutter_face/ui/widgets/loading_widget.dart';
 
 class OPLoginPage extends StatelessWidget {
   static const String routerName = "/login";
@@ -47,10 +53,12 @@ class _OPLoginContentState extends State<OPLoginContent> {
           SizedBox(height: 20.px),
           GestureDetector(
             onTap: (){
+              OPLoading.show(context);
               ///获取用户名密码
               final username = usernameTextEditController.text;
               final password = passwordTextEditController.text;
               OPLogin.login(username, password).then((value){
+                OPLoading.hide(context);
                 List<Clazzs> clazzs = [];
                 for (var list in value){
                   for (Clazzs cla in list.clazzs){
@@ -59,8 +67,9 @@ class _OPLoginContentState extends State<OPLoginContent> {
                   clazzs.addAll(list.clazzs);
                 }
                 if(clazzs.length > 1){
-                  Navigator.of(context).pushReplacementNamed(OPSelectClazzPage.routerName,arguments: clazzs);
+                  OPRouter.navigatorKey.currentState.pushReplacementNamed(OPSelectClazzPage.routerName,arguments: clazzs);
                 }
+              }).whenComplete((){
               });
             },
             child: Container(

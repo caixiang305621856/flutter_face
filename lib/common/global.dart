@@ -1,13 +1,14 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
 
+import 'package:package_info/package_info.dart';
 import 'package:device_info/device_info.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
-import 'package:flutter_face/core/utils/log.dart';
-import 'package:package_info/package_info.dart';
+import 'package:flutter/material.dart';
 
+import 'package:flutter_face/core/utils/log.dart';
 import 'package:flutter_face/core/utils/size_fit.dart';
+import 'package:flutter_face/model/user.dart';
 
 class Global{
   ///请求头数据
@@ -19,12 +20,15 @@ class Global{
 
   ///初始化全局信息
   Future init(VoidCallback callback) async{
+    ///初始化 适配工具
     OPSizeFit.initialize();
+
     WidgetsFlutterBinding.ensureInitialized();
     ///初始化 基础工具
     await SpUtil.getInstance();
     ///获取设备唯一id
     _imei = await GlobalUnique.getUniqueId();
+
     if(Platform.isIOS){
       _device = "iOS";
     } else if(Platform.isAndroid){
@@ -36,9 +40,20 @@ class Global{
     _versioncode = _versionname.replaceAll(".", "0");
     _appname = "ttManager";
 
-    Dlog.showLog("_imei:$_imei \n _device:$_device \n _versionname:$_versionname \n _versioncode:$_versioncode \n _appname:$_appname",stackTrace: StackTrace.current,prefix:"请求头信息");
-
     callback();
+
+    Dlog.showLog({
+      "imei":_imei,
+      "device":_device,
+      "versionname":_versionname,
+      "versioncode":_versioncode,
+      "appname":_appname
+    },prefix: "请求头");
+
+    OPUser user =  UserHandler.getDBUser();
+    if(user != null){
+      Dlog.showLog(UserHandler.getDBUser().toJson(),prefix: "公用请求体");
+    }
   }
 
   static String get device => _device;
@@ -71,13 +86,9 @@ class GlobalPackageInfo{
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     if (Platform.isIOS) {
       IosDeviceInfo iosDeviceInfo = await deviceInfo.iosInfo;
-      // _imei = iosDeviceInfo.identifierForVendor;
-      // _device = "iOS";
       return iosDeviceInfo.identifierForVendor; // unique ID on iOS
     } else {
       AndroidDeviceInfo androidDeviceInfo = await deviceInfo.androidInfo;
-      // _imei = androidDeviceInfo.androidId;
-      // _device = "Android";
       return androidDeviceInfo.androidId; // unique ID on Android
     }
   }
