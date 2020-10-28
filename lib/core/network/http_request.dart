@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_face/core/network/result_data.dart';
 
 import 'package:flutter_face/model/user.dart';
 import 'package:flutter_face/core/utils/log.dart';
@@ -28,19 +29,23 @@ class HttpRequest {
     }, onResponse: (Response response) {
       RequestOptions option = response.request;
       try{
-        if (response.statusCode == 200 || response.statusCode == 201) {
-            Dlog.showLog(response.request.queryParameters,stackTrace: StackTrace.current,prefix:response.request.path);
-            Dlog.showLog(response.data,stackTrace: StackTrace.current,prefix:"返回内容");
+        Dlog.showLog(response.statusCode,prefix:"statusCode");
+        if (response.statusCode == 200) {
+            // Dlog.showLog(response.request.queryParameters,stackTrace: StackTrace.current,prefix:response.request.path);
+            // Dlog.showLog(response.data,stackTrace: StackTrace.current,prefix:"返回内容");
             //响应拦截
             Map<String, dynamic> responseData = response.data;
-            int code = responseData["status"];
-            if(code == 200){
+            int status = responseData["status"];
+            if(status == 200){
+              return ResultData(responseData,true);
               return response.data["data"];
-            }
-            if(responseData["status"] == 700){
-              //跳登录页
+            } else if(status == 700){
+              //清空部分用户数据
               UserHandler.getDBUser().token = "";
               UserHandler.removeDBUser();
+              return ResultData(responseData,false,message: responseData["message"]);
+            } else {
+              return ResultData(responseData,false,message: responseData["message"]);
             }
           }
         } catch(e){

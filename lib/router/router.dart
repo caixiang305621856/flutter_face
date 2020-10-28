@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_face/core/utils/log.dart';
 
 import 'package:flutter_face/model/user.dart';
-import 'package:flutter_face/ui/pages/clazz/selectclazz_page.dart';
-import 'package:flutter_face/ui/pages/home_page.dart';
+import 'package:flutter_face/ui/pages/clazz/clazz_select_page.dart';
+import 'package:flutter_face/ui/pages/home/home_page.dart';
 import 'package:flutter_face/ui/pages/login/login_page.dart';
+import 'package:flutter_face/ui/pages/setting/setting_page.dart';
 
 class OPRouter {
 
@@ -13,6 +15,7 @@ class OPRouter {
 
   static final Map<String, WidgetBuilder> routes = {
     OPHomePage.routerName : (ctx) => OPHomePage(),
+    OPSettingPage.routerName: (ctx) => OPSettingPage(),
   };
 
   static final RouteFactory generateRoute = (settings) {
@@ -36,6 +39,7 @@ class OPRouter {
   };
 
   static final RouteFactory unknownRoute = (settings) {
+    Dlog.showLog(settings.name,prefix: "unknownRoute");
     return null;
   };
 }

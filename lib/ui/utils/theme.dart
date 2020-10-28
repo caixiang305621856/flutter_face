@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class OPAppTheme {
   //项目主色
   static const Color kMainColor = Color(0xffFF7E00);
+
   //阴影颜色
   static const Color kShadowColor = Color(0xffF7E8D8);
 
@@ -31,8 +32,7 @@ class OPAppTheme {
   static const Color kTipsColor = Color(0xffCCCCCC);
   static const Color kDarkTipsColor = Color(0xffCFCFCF);
 
-
-  // 1.共有属性
+  /// 共有属性
   //提示性字号
   static const double kTipsSize = 12;
   //辅助文字字号
@@ -44,7 +44,7 @@ class OPAppTheme {
   //标题字号
   static const double kMainTitleSize = 20;
 
-  // 2.普通模式
+  /// 普通模式
   static final ThemeData norTheme = ThemeData(
       primarySwatch: createMaterialColor(kMainColor),
       accentColor: createMaterialColor(kMainColor),
@@ -58,7 +58,7 @@ class OPAppTheme {
       )
   );
 
-  // 3.暗黑模式
+  /// 暗黑模式
   static final ThemeData darkTheme = ThemeData(
       primarySwatch: createMaterialColor(kDarkTipsColor),
       accentColor: createMaterialColor(kDarkTipsColor),

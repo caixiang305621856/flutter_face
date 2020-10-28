@@ -5,7 +5,7 @@ import 'package:flutter_face/core/utils/log.dart';
 import 'package:flutter_face/model/login_user.dart';
 import 'package:flutter_face/model/user.dart';
 import 'package:flutter_face/router/router.dart';
-import 'package:flutter_face/ui/pages/home_page.dart';
+import 'package:flutter_face/ui/pages/home/home_page.dart';
 
 class OPSelectClazzPage extends StatelessWidget {
 
