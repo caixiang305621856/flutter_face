@@ -53,6 +53,7 @@ class HttpRequest {
     }, onError: (DioError error) {
       Dlog.showLog(error.message,stackTrace: StackTrace.current,prefix:"DioError");
       //错误拦截
+      // return ResultData(null ,false, message: error.message);
       return error;
     });
     List<Interceptor> inters = [dInter];

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_face/core/network/topic_request.dart';
 import 'package:flutter_face/model/topic_model.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import 'msg_list_item.dart';
 

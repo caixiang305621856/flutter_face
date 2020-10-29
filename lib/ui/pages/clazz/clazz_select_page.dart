@@ -34,45 +34,77 @@ class OPSelectClazzPage extends StatelessWidget {
 }
 
 class OPClazzItem extends StatelessWidget {
-  OPUser user;
   final Clazzs _clazzs;
   OPClazzItem(this._clazzs);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          GestureDetector(
-            child: Container(
-              alignment: Alignment.center,
-              height: 60,
-              width: double.infinity,
-              color: Colors.red,
-              child: Text(_clazzs.name,style: TextStyle(fontSize: 28),)
+    return GestureDetector(
+      onTap: _selectClazzHandler,
+      child: Container(
+        decoration: BoxDecoration(
+          // color: OPAppTheme.kWhiteColor,
+            gradient: LinearGradient(colors:[Colors.orange,Colors.orange[700]]), //背景渐变
+            borderRadius : BorderRadius.circular(10),
+          boxShadow:[
+            BoxShadow(
+                color:OPAppTheme.kTipsColor,
+                offset: Offset(3.0,3.0),
+                blurRadius: 4.0
+            )
+          ]
+        ),
+        margin: EdgeInsets.only(left: 13,top: 13,right: 13,bottom: 0),
+        padding: EdgeInsets.only(left: 10,top: 16,right: 10,bottom: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(_clazzs.name,style: Theme.of(context).textTheme.headline6.copyWith(
+              color: OPAppTheme.kWhiteColor
+            ),),
+            SizedBox(height: 7.px,),
+            Row(
+              children: [
+                Icon(Icons.timer,size: 16,color: OPAppTheme.kWhiteColor,),
+                SizedBox(width: 5.px,),
+                Text(
+                    "${_clazzs.trainingBeginDate} ~ ${_clazzs.trainingEndDate}",
+                    style: Theme.of(context).textTheme.bodyText1.copyWith(
+                      color: OPAppTheme.kWhiteColor
+                    ))
+              ],
             ),
-            onTap: (){
-              ///选中班级
-              OPToken.getToken(_clazzs.uid).then((value){
-                Dlog.showLog("uid:${_clazzs.uid} \n clazzId:${_clazzs.identification} \n token:$value",prefix: "选班获取token成功");
-                user = UserHandler.getDBUser();
-                if(user == null){
-                  user = OPUser(value, _clazzs.uid, _clazzs.identification.toString());
-                } else{
-                  user.token = value;
-                }
-                UserHandler.saveDBUser(user);
-                OPRouter.navigatorKey.currentState.pushReplacementNamed(OPMainPage.routerName);
-              }).whenComplete((){
-                Dlog.showLog("选班完成、隐藏菊花");
-              });
-            },
-          )
-        ],
+            SizedBox(height: 7.px,),
+            Row(
+              children: [
+                Icon(Icons.view_week_sharp,size: 16,color: OPAppTheme.kWhiteColor,),
+                SizedBox(width: 5.px,),
+                Text("所属项目: ${_clazzs.projectName}",style: Theme.of(context).textTheme.bodyText1.copyWith(
+                    color: OPAppTheme.kWhiteColor
+                )),
+              ],
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  void _selectClazzHandler(){
+    ///选中班级
+    OPToken.getToken(_clazzs.uid).then((value){
+      Dlog.showLog("uid:${_clazzs.uid} \n clazzId:${_clazzs.identification} \n token:$value",prefix: "选班获取token成功");
+      OPUser user = UserHandler.getDBUser();
+      if(user == null){
+        user = OPUser(value, _clazzs.uid, _clazzs.identification.toString());
+      } else{
+        user.token = value;
+      }
+      UserHandler.saveDBUser(user);
+      OPRouter.navigatorKey.currentState.pushReplacementNamed(OPMainPage.routerName);
+    }).whenComplete((){
+      Dlog.showLog("选班完成、隐藏菊花");
+    });
   }
 }
 

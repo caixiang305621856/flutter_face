@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'package:flutter_face/common/event_bus.dart';
 import 'package:flutter_face/common/global.dart';
 import 'package:flutter_face/router/router.dart';
@@ -10,7 +12,10 @@ import 'utils.dart';
 
 void main() {
   Global().init((){
-    runApp(MyApp());
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+        .then((_) {
+      runApp( MyApp());
+    });
   });
 }
 
