@@ -13,6 +13,7 @@ List<OPBottomBarItem> items = [
   OPBottomBarItem("tabbar_res", "资源"),
 ];
 
+
 List<Widget> pages = [
   OPHomePage(),
   OPManagerPage(),
