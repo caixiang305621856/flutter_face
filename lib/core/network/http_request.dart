@@ -29,7 +29,7 @@ class HttpRequest {
     }, onResponse: (Response response) {
       RequestOptions option = response.request;
       try{
-        Dlog.showLog(response.statusCode,prefix:"statusCode");
+        Dlog.showLog(response.statusCode,prefix:"network statusCode");
         if (response.statusCode == 200) {
             // Dlog.showLog(response.request.queryParameters,stackTrace: StackTrace.current,prefix:response.request.path);
             // Dlog.showLog(response.data,stackTrace: StackTrace.current,prefix:"返回内容");
@@ -66,6 +66,7 @@ class HttpRequest {
     dio.interceptors.addAll(inters);
     try {
       ///追加请求体
+
       var requestParam = HttpConfig.setParamsFormDB();
       if (requestParam != null){
         params.addAll(requestParam);

@@ -24,7 +24,6 @@ class OPSettingPage extends StatelessWidget {
                 child: Text(_datas[index],style: Theme.of(ctx).textTheme.headline2,)
               ),
               onTap: (){
-                Dlog.showLog("退出登录 tap");
                 UserHandler.getDBUser().token = "";
                 UserHandler.removeDBUser();
               },

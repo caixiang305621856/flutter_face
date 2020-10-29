@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_face/common/event_bus.dart';
 import 'package:flutter_face/common/global.dart';
 import 'package:flutter_face/router/router.dart';
-import 'package:flutter_face/common/event_bus.dart';
 import 'package:flutter_face/ui/pages/login/login_page.dart';
-import 'package:flutter_face/ui/utils/theme.dart';
 
 import 'model/user.dart';
+
+import 'utils.dart';
 
 void main() {
   Global().init((){

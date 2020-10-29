@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_face/utils.dart';
 import 'package:flutter_face/core/network/login_request.dart';
-import 'package:flutter_face/core/utils/extension/int_extension.dart';
-import 'package:flutter_face/core/utils/log.dart';
 import 'package:flutter_face/model/login_user.dart';
 import 'package:flutter_face/router/router.dart';
 import 'package:flutter_face/ui/pages/clazz/clazz_select_page.dart';
 import 'package:flutter_face/ui/utils/loading.dart';
-import 'package:flutter_face/ui/utils/theme.dart';
 import 'package:flutter_face/ui/utils/toast.dart';
 
 class OPLoginPage extends StatelessWidget {

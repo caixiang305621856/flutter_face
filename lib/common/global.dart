@@ -11,7 +11,6 @@ import 'package:flutter_face/core/utils/size_fit.dart';
 import 'package:flutter_face/model/user.dart';
 
 class Global{
-  ///请求头数据
   static String _device;
   static String _imei;
   static String _appname;

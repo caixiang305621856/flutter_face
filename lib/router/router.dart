@@ -5,17 +5,19 @@ import 'package:flutter_face/model/user.dart';
 import 'package:flutter_face/ui/pages/clazz/clazz_select_page.dart';
 import 'package:flutter_face/ui/pages/home/home_page.dart';
 import 'package:flutter_face/ui/pages/login/login_page.dart';
+import 'package:flutter_face/ui/pages/main/main.dart';
 import 'package:flutter_face/ui/pages/setting/setting_page.dart';
 
 class OPRouter {
 
   static GlobalKey<NavigatorState> navigatorKey=GlobalKey();
 
-  static final String initialRoute = UserHandler.isLogin()?OPHomePage.routerName:OPLoginPage.routerName;
+  static final String initialRoute = UserHandler.isLogin()?OPMainPage.routerName:OPLoginPage.routerName;
 
   static final Map<String, WidgetBuilder> routes = {
     OPHomePage.routerName : (ctx) => OPHomePage(),
     OPSettingPage.routerName: (ctx) => OPSettingPage(),
+    OPMainPage.routerName: (ctx) => OPMainPage(),
   };
 
   static final RouteFactory generateRoute = (settings) {

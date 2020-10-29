@@ -1,4 +1,5 @@
 import 'package:flutter_face/common/global.dart';
+import 'package:flutter_face/core/utils/log.dart';
 import 'package:flutter_face/model/user.dart';
 
 class HttpConfig {
@@ -19,7 +20,11 @@ class HttpConfig {
   static Map<String, String> setParamsFormDB(){
     OPUser user = UserHandler.getDBUser();
     if (user != null){
-     return user.toJson();
+      Map<String, String> params = {};
+      params["uid"] = user.uid ?? "";
+      params["clazzId"] = user.clazzId ?? "";
+      params["token"] = user.token ?? "";
+      return params;
     }
     return null;
   }

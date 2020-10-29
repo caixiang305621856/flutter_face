@@ -4,8 +4,8 @@ import 'package:flutter_face/core/utils/extension/int_extension.dart';
 import 'package:flutter_face/router/router.dart';
 import 'package:flutter_face/testData.dart';
 import 'package:flutter_face/ui/pages/setting/setting_page.dart';
-import 'package:flutter_face/ui/utils/theme.dart';
 
+import 'package:flutter_face/utils.dart';
 
 class OPHomeDrawer extends StatelessWidget {
   final List _datas = <String>["推送响铃","互动消息","我的帖子","注册新机构","二维码","推帮助中心","设置"];

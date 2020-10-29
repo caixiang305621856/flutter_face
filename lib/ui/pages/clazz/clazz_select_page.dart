@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_face/core/network/token_request.dart';
-import 'package:flutter_face/core/utils/log.dart';
 import 'package:flutter_face/model/login_user.dart';
 import 'package:flutter_face/model/user.dart';
 import 'package:flutter_face/router/router.dart';
-import 'package:flutter_face/ui/pages/home/home_page.dart';
+import 'package:flutter_face/ui/pages/main/main.dart';
+import 'package:flutter_face/utils.dart';
 
 class OPSelectClazzPage extends StatelessWidget {
 
@@ -64,7 +64,7 @@ class OPClazzItem extends StatelessWidget {
                   user.token = value;
                 }
                 UserHandler.saveDBUser(user);
-                OPRouter.navigatorKey.currentState.pushReplacementNamed(OPHomePage.routerName);
+                OPRouter.navigatorKey.currentState.pushReplacementNamed(OPMainPage.routerName);
               }).whenComplete((){
                 Dlog.showLog("选班完成、隐藏菊花");
               });
