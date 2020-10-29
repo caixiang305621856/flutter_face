@@ -29,10 +29,9 @@ class HttpRequest {
     }, onResponse: (Response response) {
       RequestOptions option = response.request;
       try{
-        Dlog.showLog(response.statusCode,prefix:"network statusCode");
         if (response.statusCode == 200) {
-            // Dlog.showLog(response.request.queryParameters,stackTrace: StackTrace.current,prefix:response.request.path);
-            // Dlog.showLog(response.data,stackTrace: StackTrace.current,prefix:"返回内容");
+            Dlog.showLog(response.request.queryParameters,stackTrace: StackTrace.current,prefix:response.request.path);
+            Dlog.showLog(response.data,stackTrace: StackTrace.current,prefix:"返回内容");
             //响应拦截
             Map<String, dynamic> responseData = response.data;
             int status = responseData["status"];

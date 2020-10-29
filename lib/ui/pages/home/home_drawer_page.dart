@@ -39,7 +39,7 @@ class OPHomeDrawer extends StatelessWidget {
             child: Container(
               height: 44.px,
               alignment: Alignment.center,
-                child: Text(_datas[index],style: Theme.of(ctx).textTheme.headline2,)
+                child: Text(_datas[index],style: Theme.of(ctx).textTheme.subtitle1,)
             ),
             onTap: (){
               if(index == _datas.length - 1){
@@ -74,11 +74,7 @@ class OPHomeDrawer extends StatelessWidget {
           SizedBox(height: 10.px,),
           Text(
             "新班主任",
-            style: Theme.of(context).textTheme.headline2.copyWith(
-              fontWeight: FontWeight.bold,
-              color: OPAppTheme.kMainFontColor,
-              fontSize: OPAppTheme.kMainTitleSize
-            ),
+            style: Theme.of(context).textTheme.headline6,
           )
         ],
       )

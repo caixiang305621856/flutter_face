@@ -50,14 +50,18 @@ class OPAppTheme {
       accentColor: createMaterialColor(kMainColor),
       canvasColor: createMaterialColor(kDefaultBackgroundColor),
       textTheme: TextTheme(
-        headline1:TextStyle(fontSize: kMainTitleSize, color: kMainFontColor,fontWeight: FontWeight.bold),
-        headline2: TextStyle(fontSize: kTitleSize, color: kMainFontColor),
-        headline3: TextStyle(fontSize: kContentSize, color: kNormalFontColor),
-        headline4: TextStyle(fontSize: kAidSize, color: kOtherFontColor),
-        headline5: TextStyle(fontSize: kTipsSize, color: kTipsColor),
+        // headline1:TextStyle(fontSize: kMainTitleSize, color: kMainFontColor,fontWeight: FontWeight.bold),
+        // headline2: TextStyle(fontSize: kTitleSize, color: kMainFontColor),
+        // headline3: TextStyle(fontSize: kContentSize, color: kNormalFontColor),
+        // headline4: TextStyle(fontSize: kAidSize, color: kOtherFontColor),
+        // headline5: TextStyle(fontSize: kTipsSize, color: kTipsColor),
       ),
       appBarTheme: AppBarTheme(
         elevation: 0.0,
+        color: kWhiteColor,
+        textTheme:TextTheme(
+          headline6:TextStyle(fontSize: kTitleSize, color: kMainFontColor,fontWeight: FontWeight.bold),
+        ),
       ),
       tabBarTheme: TabBarTheme(
 

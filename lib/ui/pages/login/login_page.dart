@@ -86,6 +86,14 @@ class _OPLoginContentState extends State<OPLoginContent> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    usernameTextEditController.dispose();
+    passwordTextEditController.dispose();
+    super.dispose();
+  }
 }
 
 class OPLoginBtnWidget extends StatelessWidget {

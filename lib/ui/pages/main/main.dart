@@ -12,28 +12,14 @@ class OPMainPage extends StatefulWidget {
 
 class _OPMainPageState extends State<OPMainPage> {
   int _currentIndex = 0;
-  BuildContext _context;
-  @override
-  void initState() {
-    // TODO: implement initState
-    eventBus.on().listen((event) {
-      if (event == 'openDrawer'){
-        Scaffold.of(_context).openDrawer();
-      }
-    });
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: OPHomeDrawer(),
-      body: Builder(
-        builder: (BuildContext context){
-          _context = context;
-          return IndexedStack(
-            index: _currentIndex,
-            children: pages,
-          );
-        }
+      body: IndexedStack(
+        index: _currentIndex,
+        children: pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedFontSize: 14,
@@ -50,5 +36,11 @@ class _OPMainPageState extends State<OPMainPage> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 }

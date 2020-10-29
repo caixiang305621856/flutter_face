@@ -341,6 +341,7 @@ class Video {
       int s = _videoTime % 60;
       _videoTimeString = (h >= 10 ? h.toString():"0" + h.toString()) + ":" + (m >= 10 ? m.toString():"0" + m.toString()) + ":" + (s >= 10 ? s.toString():"0" + s.toString());
     }
+
   }
 
   Map<String, dynamic> toJson() {

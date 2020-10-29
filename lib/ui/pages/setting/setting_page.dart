@@ -19,9 +19,11 @@ class OPSettingPage extends StatelessWidget {
             return GestureDetector(
               child: Container(
                 color: OPAppTheme.kWhiteColor,
-                padding: EdgeInsets.symmetric(vertical: 13),
+                padding: EdgeInsets.symmetric(vertical: 10),
                 alignment: Alignment.center,
-                child: Text(_datas[index],style: Theme.of(ctx).textTheme.headline2,)
+                child: Text(_datas[index],style: Theme.of(ctx).textTheme.subtitle1.copyWith(
+                  color: OPAppTheme.kMainColor,
+                ),)
               ),
               onTap: (){
                 UserHandler.getDBUser().token = "";
@@ -30,7 +32,7 @@ class OPSettingPage extends StatelessWidget {
             );
           }
         return ListTile(
-          title: Text(_datas[index],style: Theme.of(ctx).textTheme.headline2,),
+          title: Text(_datas[index],style: Theme.of(ctx).textTheme.subtitle1,),
           trailing: Icon(Icons.arrow_forward_ios,size: 18,),
         );
       },
