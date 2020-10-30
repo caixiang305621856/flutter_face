@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_face/model/topic_model.dart';
+import 'package:flutter_face/router/router.dart';
+import 'package:flutter_face/ui/pages/video_page.dart';
 import 'package:flutter_face/ui/utils/theme.dart';
 
 
@@ -63,54 +65,59 @@ class _MSGItemState extends State<MSGItem> {
       width: double.maxFinite,
       alignment: Alignment.centerLeft,
       margin: EdgeInsets.only(left: 48),
-      child: Stack(
-        alignment: Alignment.bottomRight,
-        children: <Widget>[
-          Image.network(
-            widget.model.video.picUrl,
-            width: w,
-            height: h,
-            fit:BoxFit.cover,
-            frameBuilder: (BuildContext context, Widget child, int frame,
-                bool wasSynchronouslyLoaded){
-              if (wasSynchronouslyLoaded) {
-                return child;
-              }
-              return AnimatedOpacity(
-                child: child,
-                opacity: frame == null ? 0 : 1,
-                duration: const Duration(seconds: 1),
-                curve: Curves.easeOut,
-              );
-            },
-          ),
-          Container(
+      child: GestureDetector(
+        onTap: (){
+          OPRouter.navigatorKey.currentState.pushNamed(VideoApp.routerName,arguments: widget.model.video.videoUrl);
+        },
+        child: Stack(
+          alignment: Alignment.bottomRight,
+          children: <Widget>[
+            Image.network(
+              widget.model.video.picUrl,
               width: w,
               height: h,
-              child: Icon(Icons.play_circle_outline,size: 40,color: Colors.orange,)
-          ),
-          Positioned(
-            right: 5,
-            bottom: 5,
-            child: Container(
-              child: Text(
-                widget.model.video.videoTimeString,
-                style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.white
+              fit:BoxFit.cover,
+              frameBuilder: (BuildContext context, Widget child, int frame,
+                  bool wasSynchronouslyLoaded){
+                if (wasSynchronouslyLoaded) {
+                  return child;
+                }
+                return AnimatedOpacity(
+                  child: child,
+                  opacity: frame == null ? 0 : 1,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.easeOut,
+                );
+              },
+            ),
+            Container(
+                width: w,
+                height: h,
+                child: Icon(Icons.play_circle_outline,size: 40,color: Colors.orange,)
+            ),
+            Positioned(
+              right: 5,
+              bottom: 5,
+              child: Container(
+                child: Text(
+                  widget.model.video.videoTimeString,
+                  style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.white
+                  ),
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 8,
+                  vertical: 1
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  color: Colors.black54
                 ),
               ),
-              padding: EdgeInsets.symmetric(
-                horizontal: 8,
-                vertical: 1
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                color: Colors.black54
-              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

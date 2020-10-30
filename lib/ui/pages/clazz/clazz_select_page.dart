@@ -76,7 +76,7 @@ class OPClazzItem extends StatelessWidget {
                         ))
                   ],
                 ),
-                SizedBox(width: 8.px,),
+                SizedBox(width: 15.px,),
                 Row(
                   children: [
                     Icon(Icons.people,size: 16,color: OPAppTheme.kWhiteColor,),

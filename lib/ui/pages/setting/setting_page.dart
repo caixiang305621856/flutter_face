@@ -31,9 +31,14 @@ class OPSettingPage extends StatelessWidget {
               },
             );
           }
-        return ListTile(
-          title: Text(_datas[index],style: Theme.of(ctx).textTheme.subtitle1,),
-          trailing: Icon(Icons.arrow_forward_ios,size: 18,),
+        return Container(
+          color: Colors.white,
+          child: ListTile(
+            title: Text(_datas[index],style: Theme.of(ctx).textTheme.subtitle1,),
+            trailing: Icon(Icons.arrow_forward_ios,size: 18,),
+            onTap: (){
+            },
+          ),
         );
       },
         // separatorBuilder: (ctx,index){

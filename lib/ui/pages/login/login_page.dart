@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_face/utils.dart';
@@ -13,10 +14,8 @@ class OPLoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding:false,
-      body: Center(
-        child: OPLoginContent(),
-      ),
+      // resizeToAvoidBottomPadding:false,
+      body: OPLoginContent(),
     );
   }
 }
@@ -32,48 +31,44 @@ class _OPLoginContentState extends State<OPLoginContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(left: 40,top: 100,right: 40,bottom: 40),
-      child: Form(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            _buildLoginTitleRow(),
-            SizedBox(height: 8.px),
-            _buildLoginTextField("用户名",usernameTextEditController),
-            Divider(height: 1,color: OPAppTheme.kSeparatorLineColor,),
-            SizedBox(height: 20.px),
-            _buildLoginPasswordContainer(),
-            SizedBox(height: 8.px),
-            _buildLoginTextField("请输入密码",passwordTextEditController),
-            Divider(height: 1,color: OPAppTheme.kSeparatorLineColor,),
-            SizedBox(height: 30.px),
-            OPLoginBtnWidget(usernameTextEditController: usernameTextEditController, passwordTextEditController: passwordTextEditController),
-          ],
-        ),
+    return Padding(
+      padding: EdgeInsets.only(left: 40,top: 100,right: 40,bottom: 40),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          _buildLoginTitleRow(),
+          SizedBox(height: 8.px),
+          _buildLoginTextField("用户名",usernameTextEditController),
+          Divider(height: 1,color: OPAppTheme.kSeparatorLineColor,),
+          SizedBox(height: 20.px),
+          Text("密码",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold)),
+          SizedBox(height: 8.px),
+          _buildLoginTextField("请输入密码",passwordTextEditController),
+          Divider(height: 1,color: OPAppTheme.kSeparatorLineColor,),
+          SizedBox(height: 30.px),
+          OPLoginBtnWidget(usernameTextEditController: usernameTextEditController, passwordTextEditController: passwordTextEditController),
+        ],
       ),
     );
   }
 
-  Container _buildLoginPasswordContainer() {
-    return Container(
-          alignment: Alignment.centerLeft,
-          child: Text("密码",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
-        );
-  }
-
   Row _buildLoginTitleRow() {
-    return Row(children: <Widget>[
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
           Text("账号",style: TextStyle(fontSize: 28.px,fontWeight: FontWeight.bold),),
           SizedBox(width: 8.px),
           Image.asset("assets/images/login/img_sign_manager@2x.png",width: 72.px,height: 23.px,)
-        ],);
+        ],
+      );
   }
 
   Widget _buildLoginTextField(String placeholder,TextEditingController textEditingController) {
     return Container(
       width: double.infinity,
-      alignment: Alignment.bottomCenter,
+      alignment: Alignment.centerLeft,
       child: TextField(
         controller: textEditingController,
         obscureText: textEditingController == usernameTextEditController?false:true,
@@ -115,6 +110,7 @@ class OPLoginBtnWidget extends StatelessWidget {
     return Container(
       height: 44,
       width: double.infinity,
+      // child: Text("登录",style: TextStyle(fontSize: 18.px,color: OPAppTheme.kWhiteColor),),
       child: RaisedButton(
         color: OPAppTheme.kMainColor,
         highlightColor: OPAppTheme.kMainColor,
