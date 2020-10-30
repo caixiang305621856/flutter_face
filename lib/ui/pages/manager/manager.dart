@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_face/ui/pages/main/leading_btn.dart';
 import 'package:flutter_face/ui/pages/manager/photo_detail.dart';
 
 class OPManagerPage extends StatelessWidget {
@@ -7,7 +8,7 @@ class OPManagerPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("管理"),
-        leading:Container(),
+        leading: OpenLeading(),
       ),
       body: GridView(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

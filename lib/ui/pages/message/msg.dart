@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_face/ui/pages/home/home_content.dart';
+import 'package:flutter_face/ui/pages/main/leading_btn.dart';
 import 'package:flutter_face/ui/pages/message/msg_content.dart';
 
 class OPMsgPage extends StatelessWidget {
@@ -8,7 +8,7 @@ class OPMsgPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("讨论"),
-        leading:Container(),
+        leading: OpenLeading(),
       ),
       body: Center(
         child: OPMsgContent(),

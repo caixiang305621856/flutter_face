@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_face/router/router.dart';
+import 'package:flutter_face/ui/pages/demo/button_demo.dart';
+import 'package:flutter_face/utils.dart';
 
 class OPHomeContent extends StatefulWidget {
   @override
@@ -8,8 +11,34 @@ class OPHomeContent extends StatefulWidget {
 class _OPHomeContentState extends State<OPHomeContent> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("首页"),
+    return ListView(
+      children: [
+        ListItem(title: "ButtonDemo", page: OPButtonDemo())
+      ],
+    );
+  }
+}
+
+class ListItem extends StatelessWidget {
+  final String title;
+  final Widget page;
+
+  ListItem({
+    this.title,
+    this.page
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(title),
+      onTap: (){
+        OPRouter.navigatorKey.currentState.push(
+          MaterialPageRoute(builder: (context){
+            return page;
+          })
+        );
+      },
     );
   }
 }

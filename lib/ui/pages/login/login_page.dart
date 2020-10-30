@@ -13,7 +13,7 @@ class OPLoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomPadding:false,
+      resizeToAvoidBottomPadding:false,
       body: Center(
         child: OPLoginContent(),
       ),
@@ -33,22 +33,24 @@ class _OPLoginContentState extends State<OPLoginContent> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 40.px,top: 100.px,right: 40.px),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          _buildLoginTitleRow(),
-          SizedBox(height: 8.px),
-          _buildLoginTextField("用户名",usernameTextEditController),
-          Divider(height: 1,color: OPAppTheme.kSeparatorLineColor,),
-          SizedBox(height: 20.px),
-          _buildLoginPasswordContainer(),
-          SizedBox(height: 8.px),
-          _buildLoginTextField("请输入密码",passwordTextEditController),
-          Divider(height: 1,color: OPAppTheme.kSeparatorLineColor,),
-          SizedBox(height: 30.px),
-          OPLoginBtnWidget(usernameTextEditController: usernameTextEditController, passwordTextEditController: passwordTextEditController),
-        ],
+      margin: EdgeInsets.only(left: 40,top: 100,right: 40,bottom: 40),
+      child: Form(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            _buildLoginTitleRow(),
+            SizedBox(height: 8.px),
+            _buildLoginTextField("用户名",usernameTextEditController),
+            Divider(height: 1,color: OPAppTheme.kSeparatorLineColor,),
+            SizedBox(height: 20.px),
+            _buildLoginPasswordContainer(),
+            SizedBox(height: 8.px),
+            _buildLoginTextField("请输入密码",passwordTextEditController),
+            Divider(height: 1,color: OPAppTheme.kSeparatorLineColor,),
+            SizedBox(height: 30.px),
+            OPLoginBtnWidget(usernameTextEditController: usernameTextEditController, passwordTextEditController: passwordTextEditController),
+          ],
+        ),
       ),
     );
   }
