@@ -13,6 +13,7 @@ class OPLoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomPadding:false,
       body: Center(
         child: OPLoginContent(),
       ),
@@ -32,8 +33,9 @@ class _OPLoginContentState extends State<OPLoginContent> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 45.px,right: 50.px,top: 110.px),
+      padding: EdgeInsets.only(left: 40.px,top: 100.px,right: 40.px),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           _buildLoginTitleRow(),
           SizedBox(height: 8.px),

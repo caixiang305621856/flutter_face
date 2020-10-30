@@ -10,12 +10,14 @@ class OPMainPage extends StatefulWidget {
   _OPMainPageState createState() => _OPMainPageState();
 }
 
+final GlobalKey<ScaffoldState> mainScaffoldKey = GlobalKey<ScaffoldState>();
+
 class _OPMainPageState extends State<OPMainPage> {
   int _currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: mainScaffoldKey,
       drawer: OPHomeDrawer(),
       body: IndexedStack(
         index: _currentIndex,

@@ -10,13 +10,13 @@ class OPManagerPage extends StatelessWidget {
         leading:Container(),
       ),
       body: GridView(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 8,
-            childAspectRatio: 16/9,
-            mainAxisSpacing: 8
-          ),
-        children: List.generate(30, (index){
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 8,
+          childAspectRatio: 16/9,
+          mainAxisSpacing: 8
+        ),
+        children: List.generate(100, (index){
           final url = "https://picsum.photos/400/600?random=$index}.webp";
           return GestureDetector(
             onTap: (){
@@ -31,6 +31,19 @@ class OPManagerPage extends StatelessWidget {
                 child: Image.network(
                   url,
                   fit: BoxFit.cover,
+                  frameBuilder: (BuildContext context, Widget child, int frame,
+                      bool wasSynchronouslyLoaded){
+                    if (wasSynchronouslyLoaded){
+                      return child;
+                    } else{
+                      return AnimatedOpacity(
+                        child: child,
+                        opacity: frame == null ? 0 : 1,
+                        duration: const Duration(seconds: 1),
+                        curve: Curves.easeOut,
+                      );
+                    }
+                  },
                 ),
               )
           );

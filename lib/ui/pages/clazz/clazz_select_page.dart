@@ -11,8 +11,8 @@ class OPSelectClazzPage extends StatelessWidget {
 
   static const String routerName = "/select";
 
-  List<Clazzs> itmes = [];
-  OPSelectClazzPage(this.itmes);
+  var classItmes = <Clazzs>[];
+  OPSelectClazzPage(this.classItmes);
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +26,9 @@ class OPSelectClazzPage extends StatelessWidget {
 
   Widget _buildSelectClazzContent(){
     return ListView.builder(
-      itemCount: itmes.length,
+      itemCount: classItmes.length,
       itemBuilder: (context,index){
-      return OPClazzItem(itmes[index]);
+      return OPClazzItem(classItmes[index]);
     });
   }
 }
@@ -43,14 +43,14 @@ class OPClazzItem extends StatelessWidget {
       onTap: _selectClazzHandler,
       child: Container(
         decoration: BoxDecoration(
-          // color: OPAppTheme.kWhiteColor,
-            gradient: LinearGradient(colors:[Colors.orange,Colors.orange[700]]), //背景渐变
+          color: OPAppTheme.kWhiteColor,
+            gradient: LinearGradient(colors:[Colors.redAccent,Colors.orange[700]]), //背景渐变
             borderRadius : BorderRadius.circular(10),
           boxShadow:[
             BoxShadow(
                 color:OPAppTheme.kTipsColor,
-                offset: Offset(3.0,3.0),
-                blurRadius: 4.0
+                offset: Offset(2.0,3.0),
+                blurRadius: 5.0
             )
           ]
         ),
@@ -65,13 +65,29 @@ class OPClazzItem extends StatelessWidget {
             SizedBox(height: 7.px,),
             Row(
               children: [
-                Icon(Icons.timer,size: 16,color: OPAppTheme.kWhiteColor,),
-                SizedBox(width: 5.px,),
-                Text(
-                    "${_clazzs.trainingBeginDate} ~ ${_clazzs.trainingEndDate}",
-                    style: Theme.of(context).textTheme.bodyText1.copyWith(
-                      color: OPAppTheme.kWhiteColor
-                    ))
+                Row(
+                  children: [
+                    Icon(Icons.timer,size: 16,color: OPAppTheme.kWhiteColor,),
+                    SizedBox(width: 5.px,),
+                    Text(
+                        "${_clazzs.trainingBeginDate} ~ ${_clazzs.trainingEndDate}",
+                        style: Theme.of(context).textTheme.bodyText1.copyWith(
+                          color: OPAppTheme.kWhiteColor
+                        ))
+                  ],
+                ),
+                SizedBox(width: 8.px,),
+                Row(
+                  children: [
+                    Icon(Icons.people,size: 16,color: OPAppTheme.kWhiteColor,),
+                    SizedBox(width: 5.px,),
+                    Text(
+                        "学员数: ${_clazzs.studentCount}",
+                        style: Theme.of(context).textTheme.bodyText1.copyWith(
+                            color: OPAppTheme.kWhiteColor
+                        ))
+                  ],
+                ),
               ],
             ),
             SizedBox(height: 7.px,),
