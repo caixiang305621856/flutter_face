@@ -4,7 +4,7 @@ import 'package:flutter_face/core/network/result_data.dart';
 import 'package:flutter_face/model/user.dart';
 import 'package:flutter_face/core/utils/log.dart';
 
-import 'request_config.dart';
+import '../http/http_config.dart';
 
 class HttpRequest {
   static final BaseOptions baseOptions = BaseOptions(

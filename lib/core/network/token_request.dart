@@ -1,12 +1,14 @@
-import 'http_request.dart';
-import 'result_data.dart';
+import 'package:flutter_face/core/http/http_manager.dart';
 
 class OPToken{
   static Future<String> getToken(String uid) async {
-    final ResultData res = await HttpRequest.post("/login/token.json",
-        params: {"userId": uid});
-    if(res.requestSuccess){
-      return res.data["data"];
-    }
+    return await HttpManager().postAsync(url: "/login/token.json",
+        params: {"userId": uid},
+        jsonParse: (json){
+          return json;
+        },
+        errorParse: (err){
+        },
+        tag: "/login/token.json");
   }
 }

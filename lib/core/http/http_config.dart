@@ -1,8 +1,19 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_face/common/global.dart';
-import 'package:flutter_face/core/utils/log.dart';
 import 'package:flutter_face/model/user.dart';
 
 class HttpConfig {
+
+  static const String get = 'get';
+  static const String post = 'post';
+  static const int succeedCode = 200;
+  static const int logOutCode = 700;
+  static const String code = 'code';
+  static const String dioMessage = 'dioMessage';
+  static const String message = 'message';
+  static const String status = 'status';
+  static const String data = 'data';
+
   /// https://httpbin.org
   static const String baseUrl = "https://pre-api.shixunbao.cn";
   static const int sendTimeout = 10000;

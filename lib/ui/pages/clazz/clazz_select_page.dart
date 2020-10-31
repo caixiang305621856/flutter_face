@@ -40,7 +40,9 @@ class OPClazzItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _selectClazzHandler,
+      onTap: (){
+        _selectClazzHandler(context);
+      },
       child: Container(
         decoration: BoxDecoration(
           color: OPAppTheme.kWhiteColor,
@@ -106,9 +108,11 @@ class OPClazzItem extends StatelessWidget {
     );
   }
 
-  void _selectClazzHandler(){
+  void _selectClazzHandler(context){
     ///选中班级
+    OPLoading.show(context);
     OPToken.getToken(_clazzs.uid).then((value){
+      OPLoading.hide(context);
       Dlog.showLog("uid:${_clazzs.uid} \n clazzId:${_clazzs.identification} \n token:$value",prefix: "选班获取token成功");
       OPUser user = UserHandler.getDBUser();
       if(user == null){
@@ -118,8 +122,6 @@ class OPClazzItem extends StatelessWidget {
       }
       UserHandler.saveDBUser(user);
       OPRouter.navigatorKey.currentState.pushReplacementNamed(OPMainPage.routerName);
-    }).whenComplete((){
-      Dlog.showLog("选班完成、隐藏菊花");
     });
   }
 }

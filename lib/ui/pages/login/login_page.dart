@@ -110,7 +110,6 @@ class OPLoginBtnWidget extends StatelessWidget {
     return Container(
       height: 44,
       width: double.infinity,
-      // child: Text("登录",style: TextStyle(fontSize: 18.px,color: OPAppTheme.kWhiteColor),),
       child: RaisedButton(
         color: OPAppTheme.kMainColor,
         highlightColor: OPAppTheme.kMainColor,
@@ -135,9 +134,12 @@ class OPLoginBtnWidget extends StatelessWidget {
       return;
     }
     OPLoading.show(context);
-    OPLogin.login(username, password).then((value){
+    OPLogin.login(username, password).then((List<OPLoginUserList> value){
       OPLoading.hide(context);
-      List<Clazzs> clazzs = [];
+      if (value == null || value.isEmpty){
+        return;
+      }
+      List clazzs = <Clazzs>[];
       for (var list in value){
         for (Clazzs cla in list.clazzs){
           cla.uid = list.identification.toString();
