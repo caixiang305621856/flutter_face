@@ -5,6 +5,7 @@ import 'package:flutter_face/model/user.dart';
 import 'package:flutter_face/ui/pages/clazz/clazz_select_page.dart';
 import 'package:flutter_face/ui/pages/home/home_page.dart';
 import 'package:flutter_face/ui/pages/login/login_page.dart';
+import 'package:flutter_face/ui/pages/login/login_test_page.dart';
 import 'package:flutter_face/ui/pages/main/main.dart';
 import 'package:flutter_face/ui/pages/setting/setting_page.dart';
 import 'package:flutter_face/ui/pages/transition.dart';
@@ -31,6 +32,13 @@ class OPRouter {
           return OPSelectClazzPage(settings.arguments);
         },
         fullscreenDialog: true
+      );
+    } else if(settings.name == LoginRoute.routerName){
+      return MaterialPageRoute(
+          builder: (ctx) {
+            return LoginRoute();
+          },
+          fullscreenDialog: true
       );
     } else if(settings.name == OPLoginPage.routerName){
       return MaterialPageRoute(

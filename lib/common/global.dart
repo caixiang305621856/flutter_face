@@ -19,9 +19,6 @@ class Global{
 
   ///初始化全局信息
   Future init(VoidCallback callback) async{
-    ///初始化 适配工具
-    OPSizeFit.initialize();
-
     WidgetsFlutterBinding.ensureInitialized();
     ///初始化 基础工具
     await SpUtil.getInstance();

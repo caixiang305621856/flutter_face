@@ -14,6 +14,8 @@ void main() {
   Global().init((){
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
         .then((_) {
+      ///初始化 适配工具
+      OPSizeFit.initialize();
       runApp( MyApp());
     });
   });
