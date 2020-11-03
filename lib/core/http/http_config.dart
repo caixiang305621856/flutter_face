@@ -8,9 +8,12 @@ class HttpConfig {
   static const String post = 'post';
   static const int succeedCode = 200;
   static const int logOutCode = 700;
+
+  static const String errorType = 'errorType';
   static const String code = 'code';
   static const String dioMessage = 'dioMessage';
   static const String message = 'message';
+
   static const String status = 'status';
   static const String data = 'data';
 

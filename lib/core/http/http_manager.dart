@@ -355,7 +355,8 @@ class HttpManager {
   T _dioErrorHandler<T>(show,e,errorParse){
     HttpError error = HttpError.dioError(e);
     Map errorMap = {
-      HttpConfig.code:error.code,
+      HttpConfig.errorType:error.errorType,
+      HttpConfig.code:error.code.toString(),
       HttpConfig.dioMessage:e.message,
       HttpConfig.message:error.message
     };
@@ -372,9 +373,10 @@ class HttpManager {
   }
 
   T _errorHandler<T>(show,errorParse){
-    HttpError error = HttpError(HttpError.UNKNOWN, "网络异常，请稍后重试！");
+    HttpError error = HttpError(HttpError.UNKNOWN,-1, "网络异常，请稍后重试！");
     Map errorMap = {
-      HttpConfig.code:error.code,
+      HttpConfig.errorType:error.errorType,
+      HttpConfig.code:error.code.toString(),
       HttpConfig.message:error.message
     };
     if(show){

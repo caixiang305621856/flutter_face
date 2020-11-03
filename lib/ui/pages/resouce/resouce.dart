@@ -16,7 +16,6 @@ class OPResoucePage extends StatelessWidget {
               icon: Icon(Icons.search),
               tooltip: 'Search',
               onPressed: () {
-
               },
             )
           ],
@@ -32,15 +31,35 @@ class OPResoucePage extends StatelessWidget {
             ],
           )
         ),
-        body: TabBarView(
-          children: <Widget>[
-            Icon(Icons.verified_user_sharp, size: 128.0, color: OPAppTheme.kMainColor),
-            Icon(Icons.vertical_align_bottom, size: 128.0, color: OPAppTheme.kMainColor),
-            Icon(Icons.view_week_sharp, size: 128.0, color: OPAppTheme.kMainColor),
-            Icon(Icons.vertical_align_top, size: 128.0, color: OPAppTheme.kMainColor),
-          ],
-        ),
+        body: TabBarViewWidget(),
       ),
     );
   }
+}
+
+class TabBarViewWidget extends StatefulWidget {
+  const TabBarViewWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  _TabBarViewWidgetState createState() => _TabBarViewWidgetState();
+}
+
+class _TabBarViewWidgetState extends State<TabBarViewWidget> with AutomaticKeepAliveClientMixin{
+  @override
+  Widget build(BuildContext context) {
+    return TabBarView(
+      children: <Widget>[
+        Icon(Icons.verified_user_sharp, size: 128.0, color: OPAppTheme.kMainColor),
+        Icon(Icons.vertical_align_bottom, size: 128.0, color: OPAppTheme.kMainColor),
+        Icon(Icons.view_week_sharp, size: 128.0, color: OPAppTheme.kMainColor),
+        Icon(Icons.vertical_align_top, size: 128.0, color: OPAppTheme.kMainColor),
+      ],
+    );
+  }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

@@ -12,16 +12,22 @@ class OPMainPage extends StatefulWidget {
 
 final GlobalKey<ScaffoldState> mainScaffoldKey = GlobalKey<ScaffoldState>();
 
-class _OPMainPageState extends State<OPMainPage> {
+class _OPMainPageState extends State<OPMainPage> with SingleTickerProviderStateMixin{
   int _currentIndex = 0;
+  var _pageController = PageController(initialPage: 0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: mainScaffoldKey,
       drawer: OPHomeDrawer(),
-      body: IndexedStack(
-        index: _currentIndex,
-        children: pages,
+      body: PageView.builder(
+        physics:NeverScrollableScrollPhysics(),
+        itemBuilder: (BuildContext context, int index){
+          return pages[index];
+        },
+        controller: _pageController,
+        itemCount: pages.length,
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedFontSize: 14,
@@ -35,6 +41,7 @@ class _OPMainPageState extends State<OPMainPage> {
           setState(() {
             _currentIndex = index;
           });
+          _pageController.jumpToPage(index);
         },
       ),
     );

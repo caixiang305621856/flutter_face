@@ -8,7 +8,7 @@ class OPHomeContent extends StatefulWidget {
   _OPHomeContentState createState() => _OPHomeContentState();
 }
 
-class _OPHomeContentState extends State<OPHomeContent> {
+class _OPHomeContentState extends State<OPHomeContent> with AutomaticKeepAliveClientMixin{
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -17,6 +17,10 @@ class _OPHomeContentState extends State<OPHomeContent> {
       ],
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
 
 class ListItem extends StatelessWidget {
